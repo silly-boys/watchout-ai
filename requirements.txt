@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+python-multipart
+
+# 객체 감지 (YOLOv8)
+ultralytics
+
+# 이상 탐지 (PatchCore)
+anomalib
+
+# 이미지 처리
+opencv-python-headless
+Pillow
+numpy
