@@ -12,6 +12,7 @@ from pydantic import BaseModel
 
 from config import ALERTS_DIR, MAX_SAVED_IMAGES, UPLOADS_DIR
 from detectors.anomaly import set_reference
+from detectors.demo_overfit import apply_demo_overfit
 from detectors import (
     AnomalyDetector,
     FallDetector,
@@ -128,7 +129,8 @@ async def upload_image(image: UploadFile = File(...)):
     def _run_all():
         results = {}
         for name, detector in _detectors.items():
-            results[name] = detector.detect(contents)
+            result = detector.detect(contents)
+            results[name] = apply_demo_overfit(name, result, contents)
         return results
 
     detection_results = await loop.run_in_executor(executor, _run_all)

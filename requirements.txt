@@ -12,3 +12,4 @@ anomalib
 opencv-python-headless
 Pillow
 numpy
+scikit-image

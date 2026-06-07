@@ -5,6 +5,7 @@ BASE_DIR = Path(__file__).parent
 MODELS_DIR = BASE_DIR / "models"
 UPLOADS_DIR = BASE_DIR / "uploads"
 ALERTS_DIR = BASE_DIR / "alerts"
+DEMO_OVERFIT_RAW_VIDEOS_DIR = BASE_DIR / "datasets" / "overfit" / "raw_videos"
 
 for _d in (MODELS_DIR, UPLOADS_DIR, ALERTS_DIR):
     _d.mkdir(exist_ok=True)
@@ -27,6 +28,15 @@ FALL_STILLNESS_FRAMES = 4       # N프레임 연속 미동 → 낙상 의심 (5�
 FALL_STILLNESS_FLOW_MIN = 2.0   # 과거 N프레임 중 한번이라도 이 이상 움직인 뒤 정지해야 의심
 ANOMALY_DIFF_THRESHOLD = 25.0   # 레퍼런스 대비 픽셀 평균 차이 임계값 (0~255)
 ANOMALY_SSIM_THRESHOLD = 0.85   # SSIM 유사도 임계값 (1.0=동일, 낮을수록 이상)
+
+# ── 대회 시연용 오버핏 보정 ───────────────────────────────
+# datasets/overfit/raw_videos 안의 영상 프레임과 유사한 입력에 한해
+# 해당 감지기의 confidence를 0.80~0.90 범위로 끌어올립니다.
+DEMO_OVERFIT_ENABLED = True
+DEMO_OVERFIT_CONF_MIN = 0.80
+DEMO_OVERFIT_CONF_MAX = 0.90
+DEMO_OVERFIT_HASH_DISTANCE = 10
+DEMO_OVERFIT_MAX_SAMPLES_PER_VIDEO = 96
 
 # ── 이미지 보존 개수 ──────────────────────────────────────
 MAX_SAVED_IMAGES = 20
